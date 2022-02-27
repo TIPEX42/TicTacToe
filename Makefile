@@ -1,11 +1,11 @@
-PROJECT_DIR	:=		$(PWD)
+PROJECT_DIR	:=		$(CURDIR)
 
 EXE			:=		Tictactoe
 NAME		:=		$(PROJECT_DIR)/$(EXE)
 
 INCLUDES	:=		-I$(PROJECT_DIR)/Dependencies/raylib/include
 INCLUDES	+=		-I$(PROJECT_DIR)/Dependencies/raylib/sources/raylib/src
-LIBS		:=		-L$(PROJECT_DIR)/Dependencies/raylib/lib -lraylib
+LIBS		:=		-L$(PROJECT_DIR)/Dependencies/raylib/sources/raylib/src -lraylib
 
 CC			:=		g++
 
@@ -17,7 +17,7 @@ LDFLAGS		:=		$(LIBS)
 RM			:=		rm -f
 
 ifeq ($(OS), Windows_NT)
-	RM := del
+	RM := cmd \/C del
 	LDFLAGS += -lopengl32 -lgdi32 -lwinmm -mwindows
 else
 	UNAME := $(shell uname)

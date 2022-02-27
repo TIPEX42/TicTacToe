@@ -10,10 +10,9 @@ DEPENDS		:=		$(addprefix $(OBJDIR), $(SRCS:.cpp=.d))
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-			@$(CC) $(LDFLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(OBJS) -o $(NAME) $(LDFLAGS)
 
 $(OBJDIR)%.o:	%.cpp
-			@mkdir -p $(OBJDIR)
 			@$(CC) $(CFLAGS) -c $< -o $@
 			@echo "Compiling $<..."
 
