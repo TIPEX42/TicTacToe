@@ -1,0 +1,29 @@
+SRCS		:=		main.cpp Game.cpp Cell.cpp
+
+INC			:=		$(PROJECT_DIR)/Dependencies/raylib/include
+
+OBJDIR		:=		objs/
+OBJS		:=		$(addprefix $(OBJDIR), $(SRCS:.cpp=.o))
+
+DEPENDS		:=		$(addprefix $(OBJDIR), $(SRCS:.cpp=.d))
+
+all:			$(NAME)
+
+$(NAME):		$(OBJS)
+			@$(CC) $(LDFLAGS) $(OBJS) -o $(NAME)
+
+$(OBJDIR)%.o:	%.cpp
+			@mkdir -p $(OBJDIR)
+			@$(CC) $(CFLAGS) -c $< -o $@
+			@echo "Compiling $<..."
+
+clean:
+			@$(RM) $(OBJS) $(DEPENDS)
+
+fclean:			clean
+
+re:	fclean all
+
+.PHONY: all clean fclean re
+
+-include: DEPENDS
